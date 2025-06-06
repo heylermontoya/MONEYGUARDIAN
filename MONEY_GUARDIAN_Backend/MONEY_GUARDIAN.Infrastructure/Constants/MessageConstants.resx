@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GetBudgets" xml:space="preserve">
+    <value>SELECT 
+    b.[Id]
+      ,b.[UserId]
+   ,u.name as 'userName'
+      ,b.[ExpenseTypeId]
+   ,et.Name as 'ExpenseTypeName'
+      ,b.[Month]
+      ,b.[Year]
+      ,b.[Amount]
+  FROM [MONEY_GUARDIAN].[dbo].[Budgets] as b
+  inner join MONEY_GUARDIAN.dbo.Users as u on u.Id = b.UserId
+  inner join MONEY_GUARDIAN.dbo.ExpenseTypes as et on et.Id = b.ExpenseTypeId
+  {0}</value>
+  </data>
+  <data name="GetDeposits" xml:space="preserve">
+    <value>SELECT 
+    d.[Id]
+      ,d.[Date]
+      ,d.[MonetaryFundId]
+   , m.[Name] as MonetaryFundName
+      ,d.[Amount]
+  FROM [MONEY_GUARDIAN].[dbo].[Deposits] as d
+  inner join MONEY_GUARDIAN.dbo.MonetaryFunds as m on m.Id = d.MonetaryFundId
+  {0}</value>
+  </data>
+  <data name="GetExpenseDetail" xml:space="preserve">
+    <value>
+  select 
+ eh.Id,
+ eh.Date,
+ eh.MonetaryFundId,
+ mf.Name as MonetaryFundName,
+ eh.UserId,
+ u.Username,
+ eh.Observations as observation,
+ eh.Merchant,
+ eh.DocumentType,
+ ed.Amount,
+ ed.ExpenseTypeId,
+ et.Name as ExpenseTypeName
+  from [MONEY_GUARDIAN].[dbo].[ExpenseHeaders] as eh
+  inner join [MONEY_GUARDIAN].[dbo].MonetaryFunds as mf on mf.Id = eh.MonetaryFundId
+  inner join [MONEY_GUARDIAN].[dbo].Users as u on u.Id = eh.UserId
+  inner join [MONEY_GUARDIAN].[dbo].[ExpenseDetails] as ed on ed.ExpenseHeaderId = eh.Id
+  inner join [MONEY_GUARDIAN].[dbo].ExpenseTypes as et on et.Id = ed.ExpenseTypeId
+  {0}</value>
+  </data>
+  <data name="GetExpenseType" xml:space="preserve">
+    <value>SELECT TOP (1000) [Id]
+      ,[Code]
+      ,[Name]
+  FROM [MONEY_GUARDIAN].[dbo].[ExpenseTypes]
+  {0}</value>
+  </data>
+  <data name="GetMonetaryFund" xml:space="preserve">
+    <value>SELECT  [Id]
+      ,[Name]
+      ,[Type]
+  FROM [MONEY_GUARDIAN].[dbo].[MonetaryFunds]
+  {0}</value>
+  </data>
+  <data name="GetReport" xml:space="preserve">
+    <value>select * from (
+ select 
+  d.Id,
+  d.Date,
+  'Deposito' as TypeTransaction,
+  d.Amount
+ from [MONEY_GUARDIAN].[dbo].[Deposits] as d
+ union
+ SELECT 
+  eh.Id,
+  eh.Date,
+  'Gasto' as TypeTransaction,
+  sum(ed.Amount)
+ FROM [MONEY_GUARDIAN].[dbo].[ExpenseHeaders] as eh
+ inner join [MONEY_GUARDIAN].[dbo].[ExpenseDetails] as ed on ed.ExpenseHeaderId = eh.Id
+ group By eh.Id,eh.Date
+) as s
+{0}</value>
+  </data>
+  <data name="GetReportChart" xml:space="preserve">
+    <value>select * from
+(
+select  
+ et.[Name],
+ EOMONTH(DATEFROMPARTS(b.year, b.month, 1)) as date,
+ sum(b.Amount) as amount,
+ 'Presupestado' as description
+from ExpenseTypes as et
+inner join Budgets as b on b.ExpenseTypeId = et.id
+group by et.Name,EOMONTH(DATEFROMPARTS(b.year, b.month, 1))
+union
+select 
+ et.[Name],
+ eh.Date,
+ sum(ed.Amount) as amount,
+ 'Ejecutado' as description
+from ExpenseTypes as et
+inner join ExpenseDetails as ed on ed.ExpenseTypeId = et.Id
+inner join ExpenseHeaders as eh on eh.Id = ed.ExpenseHeaderId
+group by et.Name,eh.Date
+) as s
+{0}</value>
+  </data>
+  <data name="GetUsers" xml:space="preserve">
+    <value>SELECT  [Id]
+      ,[Name]
+      ,[Username]    
+  FROM [MONEY_GUARDIAN].[dbo].[Users]
+  {0}</value>
+  </data>
+</root>

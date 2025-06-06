@@ -1,0 +1,81 @@
+
+<div class="flex justify-between items-center w-full custom-background">
+    <p class="custom-background">{{ headerName }}  {{action}} fondo monetario</p>
+</div>
+
+<form [formGroup]="componentForm">
+  <div class="p-fluid">
+    
+    <div class="p-field-container">  
+         
+      <div class="p-field">
+        <input 
+          id="name"
+          type="text"  
+          pInputText 
+          formControlName="name" 
+          placeholder="Nombre*" 
+        />
+        <div *ngIf="componentForm.get('name')?.invalid &&
+          (componentForm.get('name')?.dirty || componentForm.get('name')?.touched)">
+          <span class="error-message flex align-items-center"
+              *ngIf="componentForm.get('name')?.hasError('required')">
+              <img class="w-2rem pl-2" src="/assets/svg/required.svg" alt="error"> <span>{{ requiredField }}</span>
+          </span>             
+          <span 
+            class="error-message flex align-items-center"
+            *ngIf="componentForm.get('name')?.hasError('maxlength')"
+          >
+            <img class="w-2rem pl-2" src="/assets/svg/required.svg" alt="error"> 
+            <span>Máximo 20 caracteres permitidos</span>
+          </span>        
+        </div>
+      </div> 
+
+      <div class="p-field">
+        <input 
+          id="type"
+          type="text"  
+          pInputText 
+          formControlName="type" 
+          placeholder="Tipo*" 
+        />
+        <div *ngIf="componentForm.get('type')?.invalid &&
+          (componentForm.get('type')?.dirty || componentForm.get('type')?.touched)">
+          <span class="error-message flex align-items-center"
+              *ngIf="componentForm.get('type')?.hasError('required')">
+              <img class="w-2rem pl-2" src="/assets/svg/required.svg" alt="error"> <span>{{ requiredField }}</span>
+          </span>     
+          <span 
+            class="error-message flex align-items-center"
+            *ngIf="componentForm.get('type')?.hasError('maxlength')"
+          >
+            <img class="w-2rem pl-2" src="/assets/svg/required.svg" alt="error"> 
+            <span>Máximo 20 caracteres permitidos</span>
+          </span>                             
+        </div>
+      </div> 
+     
+    </div>
+    
+    <div class="p-field-container-button">
+      <div class="p-field p-field-buttons">
+        <p-button 
+          label="Guardar" 
+          [text]="true" 
+          severity="success" 
+          class="ml-auto" 
+          type="submit"
+          [disabled]="!componentForm.valid"
+          (click)="onSubmit()"
+          (keydown.enter)="onSubmit()"
+        >
+        </p-button>
+        <p-button label="Cerrar" [text]="true" severity="success"  (keydown.enter)="onClose()" (click)="onClose()" ></p-button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="overlay-spinner" *ngIf="loading">
+  <p-progressSpinner styleClass="custom-spinner"></p-progressSpinner>
+</div>

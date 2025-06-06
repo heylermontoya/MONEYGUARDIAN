@@ -1,0 +1,139 @@
+<p-table
+    #dt1
+    [value]="infoTable"
+    dataKey="id"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [loading]="loading"
+    [paginator]="true"
+    class="fixed-height-table"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex w-full p-1 ">
+            <br><br>     
+            <p-button label="Nuevo presupuesto"  severity="success"   (keydown.enter)="new()"  (click)="new()"/>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="th-min-width" pSortableColumn="Id" id="IdTh">
+                <div class="flex align-items-center">
+                    Id
+                </div>           
+            </th>
+            <th class="th-min-width" pSortableColumn="userName" id="userNameTh">
+                <div class="flex align-items-center">
+                    Usuario
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="expenseTyipeName" id="expenseTyipeNameTh">
+                <div class="flex align-items-center">
+                    Tipo de gasto
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="month" id="monthTh">
+                <div class="flex align-items-center">
+                    Mes
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="year" id="yearTh">
+                <div class="flex align-items-center">
+                    Año
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="amount" id="amountTh">
+                <div class="flex align-items-center">
+                    Valor
+                </div>
+            </th>
+                                                                       
+            <th class="th-min-width" id="editTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+            <th class="th-min-width" id="deleteTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+        </tr>
+        <tr>
+            <th class="th-min-width" id="filterIdTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Id')" placeholder="Id" />
+                </span>
+            </th>
+            <th class="th-min-width" id="filterUserNameTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'UserName')" placeholder="Usuario" />
+                </span>
+            </th>            
+            <th class="th-min-width" id="filterExpenseTypeNameTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'ExpenseTypeName')" placeholder="Tipo de gasto" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterMonthTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Month')" placeholder="Mes" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterYearTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Year')" placeholder="Año" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterAmountTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Amount')" placeholder="Valor" />
+                </span>
+            </th>         
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-infoComponent>
+        <tr>
+            <td>
+                {{ infoComponent.id }}
+            </td>
+            <td>
+                {{ infoComponent.userName }}
+            </td>                    
+            <td>
+                {{ infoComponent.expenseTypeName }}
+            </td>                       
+            <td>
+                {{ infoComponent.month }}
+            </td>                       
+            <td>
+                {{ infoComponent.year }}
+            </td>                       
+            <td>
+                {{ infoComponent.amount }}
+            </td>                       
+            <td>
+                <p-button label="Editar" [text]="true" severity="warning" 
+                    (click)="edit(
+                        infoComponent
+                    )"
+                    (keydown.enter)="edit(
+                        infoComponent
+                    )"
+                />
+            </td>
+            <td>
+                <p-button label="Eliminar" [text]="true" severity="danger" />
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No se encontro información.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>

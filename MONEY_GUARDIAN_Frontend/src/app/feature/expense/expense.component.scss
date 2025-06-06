@@ -1,0 +1,12 @@
+:host ::ng-deep .id-column {
+  max-width: 17rem;
+  width: 17rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host ::ng-deep .id-column input {
+  max-width: 3rem!important;
+  width: 3rem!important;  
+}

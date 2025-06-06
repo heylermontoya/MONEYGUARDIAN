@@ -1,0 +1,107 @@
+<p-table
+    #dt1
+    [value]="infoTable"
+    dataKey="id"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [loading]="loading"
+    [paginator]="true"
+    class="fixed-height-table"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex w-full p-1 ">
+            <br><br>     
+            <p-button label="Nuevo tipo de deposito"  severity="success" (keydown.enter)="new()" (click)="new()"/>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="th-min-width" pSortableColumn="Id" id="IdTh">
+                <div class="flex align-items-center">
+                    Id
+                </div>           
+            </th>
+            <th class="th-min-width" pSortableColumn="Date" id="DateTh">
+                <div class="flex align-items-center">
+                    Fecha
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="MonetaryFundName" id="MonetaryFundNameTh">
+                <div class="flex align-items-center">
+                    Fondo monetario
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="Amount" id="AmountTh">
+                <div class="flex align-items-center">
+                    Valor
+                </div>
+            </th>            
+                                                                       
+            <th class="th-min-width" id="editTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+            <th class="th-min-width" id="deleteTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+        </tr>
+        <tr>
+            <th class="th-min-width" id="filterIdTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Id')" placeholder="Id" />
+                </span>
+            </th>
+            <th class="th-min-width" id="filterCodeTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Date')" placeholder="Fecha" />
+                </span>
+            </th>            
+            <th class="th-min-width" id="filterCodeTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'MonetaryFundName')" placeholder="fondo monetario" />
+                </span>
+            </th>            
+            <th class="th-min-width" id="filterNameTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Amount')" placeholder="Valor" />
+                </span>
+            </th>         
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-infoComponent>
+        <tr>
+            <td>
+                {{ infoComponent.id }}
+            </td>
+            <td>
+                {{ infoComponent.date | date:'MM/dd/yyyy' }}
+            </td>   
+            <td>
+                {{ infoComponent.monetaryFundName }}
+            </td>                                                    
+            <td>
+                {{ infoComponent.amount }}
+            </td>                       
+            <td>
+                <p-button label="Editar" [text]="true" severity="warning" 
+                    (click)="edit(infoComponent)"
+                    (keydown.enter)="edit(infoComponent)"
+                />
+            </td>
+            <td>
+                <p-button label="Eliminar" [text]="true" severity="danger" />
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No se encontro información.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>

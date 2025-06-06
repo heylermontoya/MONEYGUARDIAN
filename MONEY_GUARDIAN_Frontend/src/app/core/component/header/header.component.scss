@@ -1,0 +1,67 @@
+.custom-toolbar {
+    background-color: black;
+    color: white;
+    .app-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
+    .app-logo {
+        width: 40px; 
+        height: auto;
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.separator-y {
+    height: 30px;
+    border-left: var(--secondary) solid 1px;
+}
+
+.separator{
+    padding: 10px;
+}
+
+.dropdown-menu{
+    display: none;
+    position: absolute;
+    top: 13%;
+    right: 13px;
+    background-color: var(--white);
+    border: 1px solid #ccc;
+    box-shadow: var(--shadown-normal);
+    z-index: 1000;
+    min-width: 150px;
+    overflow: hidden;
+}
+
+.dropdown-menu.show{
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-item:hover{
+    background-color: #333;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.p-sidebar {
+  background-color: #000 !important;
+  color: #fff;
+}

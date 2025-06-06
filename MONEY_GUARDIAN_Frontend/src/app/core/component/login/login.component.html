@@ -1,0 +1,38 @@
+<section class="login-container">
+  <div class="login-content">
+    <h2 class="text-center">Money Guardian</h2>
+    <p class="lead text-center">Iniciar sesión</p>
+    <p-button 
+      (click)="loginWithGoogle()" 
+      (keydown.enter)="loginWithGoogle()" 
+      icon="pi pi-google" 
+      label="Iniciar sesión con Google" 
+      class="p-button-raised p-button-rounded google-button"
+    >
+    </p-button>
+
+      <p-divider align="center" type="solid">
+        <br><br>
+      <b>O</b>
+    </p-divider>
+
+    <!-- Login with Username and Password -->
+    <form (ngSubmit)="loginWithUsername()">
+      <div class="p-field mb-3">
+        <label for="username">Usuario:    </label>
+        <input pInputText id="username" [(ngModel)]="username" name="username" required />
+      </div>
+
+      <div class="p-field mb-3">
+        <label for="password">Contraseña: </label>
+        <input pInputText id="password" type="password" [(ngModel)]="password" name="password" required />
+      </div>
+      <br>
+      <p-button 
+        type="submit"
+        label="Iniciar sesión"
+        class="p-button-raised p-button-rounded w-full"
+      ></p-button>
+    </form>
+  </div>
+</section>

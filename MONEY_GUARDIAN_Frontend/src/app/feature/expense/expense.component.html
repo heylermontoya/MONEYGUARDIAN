@@ -1,0 +1,235 @@
+<p-table
+    #dt1
+    [value]="infoTable"
+    dataKey="id"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [loading]="loading"
+    expandableRows
+    [paginator]="true"
+    class="fixed-height-table"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex w-full p-1 ">
+            <br><br>     
+            <p-button label="Nuevo gasto"  severity="success" (keydown.enter)="new()" (click)="new()"/>
+        </div>
+    </ng-template>
+
+    <!-- Cabecera de la tabla -->
+    <ng-template pTemplate="header">
+        <tr>
+            <!--header-->
+            <th style="width: 3rem"></th>
+            <th class="id-column" pSortableColumn="Id" id="IdTh">
+                <div class="flex align-items-center">
+                    Id
+                </div>           
+            </th>
+            <th class="th-min-width" pSortableColumn="Date" id="DateTh">
+                <div class="flex align-items-center">
+                    Fecha
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="MonetaryFund" id="MonetaryFundTh">
+                <div class="flex align-items-center">
+                    Fondo monetario
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="observation" id="observationTh">
+                <div class="flex align-items-center">
+                    Observación
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="merchant" id="merchantTh">
+                <div class="flex align-items-center">
+                    Nombre del comercio
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="documentType" id="documentTypeTh">
+                <div class="flex align-items-center">
+                    Tipo de documento
+                </div>
+            </th>
+
+            <!--detail-->
+            <!--
+            <th class="th-min-width" pSortableColumn="ExpenseType" id="ExpenseTypeTh">
+                <div class="flex align-items-center">
+                    Tipo de gasto
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="amount" id="amountTh">
+                <div class="flex align-items-center">
+                    Valor
+                </div>
+            </th>
+            -->
+            <th class="th-min-width" pSortableColumn="user" id="userTh">
+                <div class="flex align-items-center">
+                    Usuario
+                </div>
+            </th>
+            
+            <!--actions-->
+            <th class="th-min-width" id="editTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+            <th class="th-min-width" id="deleteTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+        </tr>
+        <tr>
+            <!--header-->
+            <th style="width: 3rem"></th>
+            <th class="id-column" id="filterIdTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Id')" placeholder="Id" />
+                </span>
+            </th>
+            <th class="th-min-width" id="filterDateTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Date')" placeholder="Fecha" />
+                </span>
+            </th>            
+            <th class="th-min-width" id="filterMonetaryFundTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'MonetaryFund')" placeholder="Fondo monetario" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterObservationTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Observation')" placeholder="Observacion" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterMerchantTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Merchant')" placeholder="Nombre del comercio" />
+                </span>
+            </th>         
+            <th class="th-min-width" id="filterDocumentTypeTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'DocumentType')" placeholder="Tipo de documento" />
+                </span>
+            </th>         
+
+            <!--detalle-->
+            <!--
+            <th class="th-min-width" id="filterExpenseTypeTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'ExpenseType')" placeholder="Tipo de gasto" />
+                </span>
+            </th>                                    
+            <th class="th-min-width" id="filterAmountTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Amount')" placeholder="Valor" />
+                </span>
+            </th>   
+            -->
+            <th class="th-min-width" id="filterUserTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'User')" placeholder="Usuario" />
+                </span>
+            </th>            
+        </tr>
+    </ng-template>
+
+    <!-- Cuerpo principal -->
+    <ng-template pTemplate="body" let-infoComponent>
+        <tr>
+            <td>
+                <button type="button" (click)="dt1.toggleRow(infoComponent)" class="p-button p-button-text p-0">
+                    <i
+                    class="pi"
+                    [ngClass]="dt1.isRowExpanded(infoComponent) ? 'pi-chevron-down' : 'pi-chevron-right'"
+                    ></i>
+                </button>
+            </td>
+            <!--header-->
+            <td>
+                {{ infoComponent.id }}
+            </td>
+            <td>
+                {{ infoComponent.date | date:'MM/dd/yyyy'}}
+            </td>                    
+            <td>
+                {{ infoComponent.monetaryFundName }}
+            </td>                       
+            <td>
+                {{ infoComponent.observation }}
+            </td>                       
+            <td>
+                {{ infoComponent.merchant }}
+            </td>                       
+            <td>
+                {{ infoComponent.documentType }}
+            </td>    
+                                                                              
+            <!--detalle-->
+            <!--
+             <td>
+                {{ infoComponent.expenseTypeName }}
+            </td>
+            <td>
+                {{ infoComponent.amount }}
+            </td>
+            -->   
+             <td>
+                {{ infoComponent.userName }}
+            </td>  
+             <!--actions-->                    
+            <td>
+                <p-button label="Editar" [text]="true" severity="warning" 
+                    (click)="edit(
+                        infoComponent
+                    )"
+                    (keydown.enter)="edit(infoComponent)"
+                />
+            </td>
+            <td>
+                <p-button label="Eliminar" [text]="true" severity="danger" />
+            </td>
+        </tr>
+    </ng-template>
+    <!-- Subtabla expandida con los detalles -->
+    <ng-template pTemplate="rowexpansion" let-expense>
+        <tr>
+            <td colspan="8">
+                <p-table
+                    [value]="expense.details"
+                    class="p-datatable-sm"
+                >
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Tipo de gasto</th>
+                            <th>Valor</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-detail>
+                        <tr>
+                            <td>{{ detail.expenseTypeName }}</td>
+                            <td>{{ detail.amount }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No se encontro información.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>

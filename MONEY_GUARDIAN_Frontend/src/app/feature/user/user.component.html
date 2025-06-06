@@ -1,0 +1,90 @@
+<p-table
+    #dt1
+    [value]="infoTable"
+    dataKey="id"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 15]"
+    [loading]="loading"
+    [paginator]="true"
+    class="fixed-height-table"
+>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="th-min-width" pSortableColumn="Id" id="IdTh">
+                <div class="flex align-items-center">
+                    Id
+                </div>           
+            </th>
+            <th class="th-min-width" pSortableColumn="userName" id="UserNameTh">
+                <div class="flex align-items-center">
+                    Nombre de usuario
+                </div>
+            </th>
+            <th class="th-min-width" pSortableColumn="Name" id="NameTh">
+                <div class="flex align-items-center">
+                    Nombre
+                </div>
+            </th>
+                                                                       
+            <th class="th-min-width" id="editTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+            <th class="th-min-width" id="deleteTh">
+                <div class="flex align-items-center">                
+                </div>
+            </th>                
+        </tr>
+        <tr>
+            <th class="th-min-width" id="filterIdTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Id')" placeholder="Id" />
+                </span>
+            </th>
+            <th class="th-min-width" id="filterCodeTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'userName')" placeholder="Nombre de usuario" />
+                </span>
+            </th>            
+            <th class="th-min-width" id="filterNameTh">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input type="text" (input)="onColumnFilter($event, 'Name')" placeholder="Nombre" />
+                </span>
+            </th>         
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-infoComponent>
+        <tr>
+            <td>
+                {{ infoComponent.id }}
+            </td>
+            <td>
+                {{ infoComponent.userName }}
+            </td>                    
+            <td>
+                {{ infoComponent.name }}
+            </td>                       
+            <td>
+                <p-button label="Editar" [text]="true" severity="warning" 
+                    (click)="edit(
+                        infoComponent
+                    )"
+                    (keydown.enter)="edit(infoComponent)"
+                />
+            </td>
+            <td>
+                <p-button label="Eliminar" [text]="true" severity="danger"/>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="7">No se encontro información.</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-confirmDialog></p-confirmDialog>

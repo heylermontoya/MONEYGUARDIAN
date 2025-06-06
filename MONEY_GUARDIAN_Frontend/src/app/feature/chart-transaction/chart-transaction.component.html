@@ -1,0 +1,20 @@
+<div class="p-fluid">
+  <div class="p-field">
+    <br><br>
+    <label for="dateRange">Rango de fechas</label>
+    <p-calendar 
+      appendTo="body"
+      [(ngModel)]="selectedDateRange" 
+      selectionMode="range" 
+      dateFormat="dd/mm/yy"
+      (onSelect)="onDateFilter(selectedDateRange,'date')" 
+      [showIcon]="true"
+    >
+    </p-calendar>
+  </div>
+
+  <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+</div>
+<div class="overlay-spinner" *ngIf="loading">
+  <p-progressSpinner styleClass="custom-spinner"></p-progressSpinner>
+</div>
